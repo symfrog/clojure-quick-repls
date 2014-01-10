@@ -3,7 +3,7 @@ clojure-quick-repls
 
 Emacs functions for quickly creating clojure and clojurescript repls for a project. 
 
-Once the repls are created the usual cider commands can be used in either a clj/cljs buffer and the forms will be routed automatically via the correct connection.
+Once the repls are created the usual [cider](https://github.com/clojure-emacs/cider) commands can be used in either a clj/cljs buffer and the forms will be routed automatically via the correct connection.
 
 So no need to manually switch connections! 
 
@@ -13,6 +13,8 @@ Installation
 Add clojure-quick-repls.el to your init.el via e.g. (load-file "~/.emacs.d/clojure-quick-repls.el"). 
 
 Make sure you have [piggieback](https://github.com/cemerick/piggieback) as a dependency in project.clj.
+
+Also requires [cider](https://github.com/clojure-emacs/cider). 
 
 
 Usage
