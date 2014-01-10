@@ -22,7 +22,7 @@ Open any clojure file in the project that you wish to have clojure/clojurescript
 
 M-x repls-connect
 
-Wait for about 1 minute and check *Messages* buffer for "Clj connection buffer: *nrepl-connection cljscript* Cljs connection buffer *nrepl-connection*". 
+Wait for about 1 minute and check *Messages* buffer for "Clj connection buffer: .\* Cljs connection buffer .\*". 
 
 Do not attempt to execute repls-connect twice, if you need to restart run cider-quit and then repls-connect. 
 
