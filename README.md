@@ -36,4 +36,7 @@ Known issues
 Currently cider-switch-to-relevant-repl-buffer (C-c C-z) does not open the correct repl buffer. I have not had a time to check why this is, but I suspect that it does not use nrepl-current-session and therefore the nrepl-switch advice is not executed.
 
 
+License
+-------
 
+Distributed under the GNU General Public License, version 3
