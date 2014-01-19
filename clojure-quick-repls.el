@@ -1,19 +1,27 @@
-; Version 0.0.1 alpha
+                                        ; Version 0.0.1 alpha
 
 (setq repls-nrepl-connected-fn nil)
-(defun noop-repls-nrepl-connected-fn () (fset 'repls-nrepl-connected-fn (lambda (buf) nil)))
+
+(defun noop-repls-nrepl-connected-fn ()
+  (fset 'repls-nrepl-connected-fn (lambda (buf) nil)))
 
 (noop-repls-nrepl-connected-fn)
 
-(setq repls-timer nil)
+(setq repls-current-buffer nil)
 (setq nrepl-connect-done nil)
 
 (add-hook 'nrepl-connected-hook (lambda ()
-                                  (message "nrepl connected hook called...")
-                                 (setq nrepl-connect-done t)))
+                                  (setq nrepl-connect-done t)))
+
+(run-with-timer 15 5
+                (lambda ()
+                  (when nrepl-connect-done 
+                    (setq nrepl-connect-done nil)
+                    (repls-nrepl-connected-fn repls-current-buffer))))
 
 (defun repls-connect ()
   (interactive)
+  (setq repls-current-buffer (current-buffer))
   (noop-repls-nrepl-connected-fn)
   (cider-jack-in)
 
@@ -21,38 +29,22 @@
   (setq cljs-con-buf nil)
 
   (lexical-let* ((cljs-fn (lambda (buf)  
-                    (with-current-buffer buf
-                      (message "Initiating browser repl in %s" (nrepl-current-connection-buffer))
-                      (noop-repls-nrepl-connected-fn)
-                      (cider-eval-sync "(require 'cljs.repl.browser)")
-                      (cider-eval-sync "(cemerick.piggieback/cljs-repl
+                            (with-current-buffer buf
+                              (noop-repls-nrepl-connected-fn)
+                              (cider-eval-sync "(require 'cljs.repl.browser)")
+                              (cider-eval-sync "(cemerick.piggieback/cljs-repl
                     :repl-env (cljs.repl.browser/repl-env :port 9000))")
-                      (setq cljs-con-buf (nrepl-current-connection-buffer))
-                      (message "Cljs browser repl ready")
-                      (message "Clj connection buffer: %s Cljs connection buffer %s" clj-con-buf cljs-con-buf)
-                      )))
-         (clj-fn (lambda (buf)
-                   (with-current-buffer buf
-                     (message "clj-fn called..")
-                     (noop-repls-nrepl-connected-fn)
-                     (message "done setting no-op")
-                     (if (boundp 'cljs-fn) (message "cljs-fn good") (message "cljs-fn bad"))
-                     (message "cljs-fn %s" cljs-fn)
-                     (fset 'repls-nrepl-connected-fn cljs-fn)
-                     (message "done fesetting cljs-fn")
-                     (setq clj-con-buf (nrepl-current-connection-buffer))
-                     (message "Creating nrepl connection for cljs")
-                     (new-repl-connection))) ))
-          (fset 'repls-nrepl-connected-fn clj-fn)
-          (run-with-timer 5 5
-                          (lambda (buf)
-                            (message "timer called: %s" nrepl-connect-done)
-                            (when nrepl-connect-done 
-                                (setq nrepl-connect-done nil)
-                                (repls-nrepl-connected-fn buf)
-                              ))
-                          (current-buffer))))
-
+                              (setq cljs-con-buf (nrepl-current-connection-buffer))
+                              (message "Clj connection buffer: %s Cljs connection buffer %s" clj-con-buf cljs-con-buf)
+                              (message "Cljs browser repl ready"))))
+                 (clj-fn (lambda (buf)
+                           (with-current-buffer buf
+                             (noop-repls-nrepl-connected-fn)
+                             (fset 'repls-nrepl-connected-fn cljs-fn)
+                             (setq clj-con-buf (nrepl-current-connection-buffer))
+                             (message "Creating nrepl connection for cljs")
+                             (new-repl-connection)))))
+    (fset 'repls-nrepl-connected-fn clj-fn)))
 
 (defun new-repl-connection ()
   (interactive)
