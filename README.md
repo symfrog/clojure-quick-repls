@@ -33,7 +33,7 @@ You can now connect the browser and execute any cider command in either a clj/cl
 Known issues
 ------------
 
-Currently cider-switch-to-relevant-repl-buffer (C-c C-z) does not open the correct repl buffer. I have not had a time to check why this is, but I suspect that it does not use nrepl-current-session and therefore the nrepl-switch advice is not executed.
+Currently cider-switch-to-relevant-repl-buffer (C-c C-z) does not open the correct repl buffer. I have not had time to check why this is, but I suspect that it does not use nrepl-current-session and therefore the nrepl-switch advice is not executed.
 
 
 License
