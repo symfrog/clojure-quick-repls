@@ -66,8 +66,8 @@
     (-when-let (ext (buffer-extension (current-buffer)))
       (when (or (string= ext "clj") (string= ext "cljs"))
         (if (string= ext "cljs")
-            (nrepl-make-repl-connection-default cljs-con-buf)
-          (nrepl-make-repl-connection-default clj-con-buf)))))
+            (nrepl-make-connection-default cljs-con-buf)
+          (nrepl-make-connection-default clj-con-buf)))))
   (message "Current repl connection buffer %s" (nrepl-current-connection-buffer)))
 
 (ad-activate 'nrepl-current-session)
