@@ -30,11 +30,31 @@ Do not attempt to execute repls-connect twice, if you need to restart run cider-
 
 You can now connect the browser and execute any cider command in either a clj/cljs buffer and the forms will be routed to the correct connection.
 
-Known issues
-------------
+cider-switch-to-relevant-repl-buffer (C-c C-z) 
+----------------------------------------------
 
-Currently cider-switch-to-relevant-repl-buffer (C-c C-z) does not open the correct repl buffer. I have not had time to check why this is, but I suspect that it does not use nrepl-current-session and therefore the nrepl-switch advice is not executed.
+If you would like to be able to switch to the relevant repl buffer based on if you are currently in a clj or cljs buffer then you need to set the custom variable cider-switch-to-repl-command to repls-switch-to-relevant-repl 
+ 
+You can set a custom variable using: 
 
+M-x: customize
+
+After setting the custom variable you should have an form under custom-set-variables that looks like: 
+
+```
+    '(cider-switch-to-repl-command (quote repls-switch-to-relevant-repl))
+```
+
+so a custom-set-variables form with only this variable set would like: 
+
+```
+    (custom-set-variables
+    ;; custom-set-variables was added by Custom.
+    ;; If you edit it by hand, you could mess it up, so be careful.
+    ;; Your init file should contain only one such instance.
+    ;; If there is more than one, they won't work right.
+    '(cider-switch-to-repl-command (quote repls-switch-to-relevant-repl)))
+```
 
 License
 -------
