@@ -37,7 +37,7 @@ If you would like to be able to switch to the relevant repl buffer based on if y
  
 You can set a custom variable using: 
 
-M-x: customize
+M-x customize
 
 After setting the custom variable you should have an form under custom-set-variables that looks like: 
 
