@@ -2,6 +2,11 @@
 
 (setq repls-nrepl-connected-fn nil)
 
+(setq repls-cljs-setup
+      "(require 'cljs.repl.browser)
+       (cemerick.piggieback/cljs-repl
+                    :repl-env (cljs.repl.browser/repl-env :port 9000))")
+
 (defun noop-repls-nrepl-connected-fn ()
   (fset 'repls-nrepl-connected-fn (lambda (buf) nil)))
 
@@ -37,14 +42,14 @@
   (lexical-let* ((cljs-fn (lambda (buf)  
                             (with-current-buffer buf
                               (noop-repls-nrepl-connected-fn)
-                              (nrepl-sync-request:eval "(require 'cljs.repl.browser)")
-                              (nrepl-sync-request:eval "(cemerick.piggieback/cljs-repl
-                    :repl-env (cljs.repl.browser/repl-env :port 9000))")
-                              (setq cljs-con-buf (nrepl-current-connection-buffer))
-                              (message "Clj connection buffer: %s Cljs connection buffer %s" clj-con-buf cljs-con-buf)
-                              (message "Cljs browser repl ready")
-                              ; Make the clj buf default after completion 
-                              (nrepl-make-connection-default clj-con-buf))))
+                              (if (string= "ex" (cadr (nrepl-sync-request:eval repls-cljs-setup)))
+                                  (message "Failed to initialize cljs connection with form %s" repls-cljs-setup)
+                                (progn
+                                  (setq cljs-con-buf (nrepl-current-connection-buffer))
+                                  (message "Clj connection buffer: %s Cljs connection buffer %s" clj-con-buf cljs-con-buf)
+                                  (message "Cljs browser repl ready")
+                                        ; Make the clj buf default after completion 
+                                  (nrepl-make-connection-default clj-con-buf))))))
                  (clj-fn (lambda (buf)
                            (with-current-buffer buf
                              (noop-repls-nrepl-connected-fn)
