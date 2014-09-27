@@ -14,7 +14,7 @@ Add clojure-quick-repls.el to your init.el via e.g. (load-file "~/.emacs.d/cloju
 
 Make sure you have [piggieback](https://github.com/cemerick/piggieback) as a dependency in project.clj.
 
-Also requires [cider](https://github.com/clojure-emacs/cider). 
+Also requires [CIDER](https://github.com/clojure-emacs/cider). The latest CIDER snapshot should be used since clojure-quick-repls maintains compatibility with the latest CIDER snapshot as closely as possible.  
 
 
 Usage

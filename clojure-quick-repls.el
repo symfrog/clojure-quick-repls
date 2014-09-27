@@ -62,7 +62,7 @@
 (defun new-repl-connection ()
   (interactive)
   (let* ((host (nrepl-current-host))
-         (port (nrepl-default-port)))
+         (port (nrepl-extract-port)))
     (message "Creating repl connection to nrepl server  on port %s, host %s" host port)
     (cider host port)))
 
