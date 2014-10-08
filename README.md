@@ -1,9 +1,9 @@
 clojure-quick-repls
 ===================
 
-Emacs functions for quickly creating clojure and clojurescript repls for a project. 
+Emacs functions for quickly creating Clojure and ClojureScript repls for a project. 
 
-Once the repls are created the usual [cider](https://github.com/clojure-emacs/cider) commands can be used in either a clj/cljs buffer and the forms will be routed automatically via the correct connection.
+Once the repls are created the usual [CIDER](https://github.com/clojure-emacs/cider) commands can be used in either a clj/cljs buffer and the forms will be routed automatically via the correct connection.
 
 So no need to manually switch connections! 
 
@@ -20,7 +20,7 @@ Also requires [CIDER](https://github.com/clojure-emacs/cider). The latest CIDER 
 Usage
 -----
 
-Open any clojure file in the project that you wish to have clojure/clojurescript repls for, then 
+Open any Clojure file in the project that you wish to have Clojure/ClojureScript repls for, then 
 
 M-x repls-connect
 
