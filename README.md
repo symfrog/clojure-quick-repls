@@ -45,7 +45,7 @@ After setting the custom variable you should have an form under custom-set-varia
     '(cider-switch-to-repl-command (quote repls-switch-to-relevant-repl))
 ```
 
-so a custom-set-variables form with only this variable set would like: 
+so a custom-set-variables form with only this variable set would look like: 
 
 ```
     (custom-set-variables
