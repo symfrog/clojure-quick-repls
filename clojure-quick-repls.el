@@ -1,4 +1,43 @@
-; Version 0.0.1 alpha
+;;; clojure-quick-repls.el --- Emacs functions for quickly creating Clojure and ClojureScript repls for a project.
+
+;; Copyright (C) 2014 symfrog
+
+;; URL: https://github.com/symfrog/clojure-quick-repls
+;; Keywords: languages, clojure, cider, clojurescript
+;; Version: 0.2.0-cvs
+;; Package-Requires: ((cider "0.8.1"))
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; Emacs functions for quickly creating Clojure and ClojureScript repls for a project.
+;; Once the repls are created the usual CIDER commands can be used in either a clj/cljs buffer and the forms will be routed automatically via the correct connection.
+;; So no need to manually switch connections!
+
+;;; Installation:
+
+;; Available as a package in melpa.org.
+;; M-x package-install clojure-quick-repls
+
+;;; Usage:
+
+;;     (require 'clojure-quick-repls)
+
+;;; Code:
+
+(require 'cider)
 
 (setq repls-nrepl-connected-fn nil)
 
@@ -99,3 +138,4 @@
 
 (ad-activate 'nrepl-current-session)
 
+;;; clojure-quick-repls.el ends here
