@@ -131,11 +131,9 @@
   (interactive)
   (clojure-quick-repls-set-connection 'cider-switch-to-current-repl-buffer 'cider-switch-to-relevant-repl-buffer))
 
-(defadvice clojure-quick-repls-nrepl-current-session (before repl-switch)
+(defadvice clojure-quick-repls-nrepl-current-session (before repl-switch activate)
   (clojure-quick-repls-set-connection nil nil)
   (message "Current repl connection buffer %s" (nrepl-current-connection-buffer)))
-
-(ad-activate 'clojure-quick-repls-nrepl-current-session)
 
 (provide 'clojure-quick-repls-connect)
 
