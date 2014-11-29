@@ -130,7 +130,6 @@
             (funcall h)))))
 
 (defun quick-repls-switch-to-relevant-repl (arg)
-  (interactive)
   (quick-repls-set-connection 'cider-switch-to-current-repl-buffer 'cider-switch-to-relevant-repl-buffer))
 
 (defadvice quick-repls-nrepl-current-session (before repl-switch)
