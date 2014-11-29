@@ -40,10 +40,10 @@
 (require 'cider)
 (require 'dash)
 
-(setq clojure-quick-repls-nrepl-connected-fn nil)
+(defvar clojure-quick-repls-nrepl-connected-fn nil)
 
-(setq clojure-quick-repls-cljs-setup
-      "(require 'cljs.repl.browser)
+(defvar clojure-quick-repls-cljs-setup
+  "(require 'cljs.repl.browser)
        (cemerick.piggieback/cljs-repl
                     :repl-env (cljs.repl.browser/repl-env :port 9000))")
 
@@ -52,8 +52,10 @@
 
 (clojure-quick-repls-noop-nrepl-connected-fn)
 
-(setq clojure-quick-repls-current-buffer nil)
-(setq clojure-quick-repls-nrepl-connect-done nil)
+(defvar clojure-quick-repls-current-buffer nil)
+(defvar clojure-quick-repls-nrepl-connect-done nil)
+(defvar clojure-quick-repls-clj-con-buf nil)
+(defvar clojure-quick-repls-cljs-con-buf nil)
 
 (defun clojure-quick-repls-clear-con-bufs ()
   (setq clojure-quick-repls-clj-con-buf nil)
