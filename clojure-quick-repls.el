@@ -53,7 +53,6 @@
 (clojure-quick-repls-noop-nrepl-connected-fn)
 
 (defvar clojure-quick-repls-current-buffer nil)
-(defvar clojure-quick-repls-nrepl-connect-done nil)
 (defvar clojure-quick-repls-clj-con-buf nil)
 (defvar clojure-quick-repls-cljs-con-buf nil)
 
@@ -61,17 +60,14 @@
   (setq clojure-quick-repls-clj-con-buf nil)
   (setq clojure-quick-repls-cljs-con-buf nil))
 
-(add-hook 'nrepl-connected-hook (lambda ()
-                                  (setq clojure-quick-repls-nrepl-connect-done t)))
+(add-hook 'nrepl-connected-hook
+          (lambda ()
+            (run-with-timer 5 nil
+                            (lambda ()
+                              (clojure-quick-repls-nrepl-connected-fn clojure-quick-repls-current-buffer)))))
 
 (add-hook 'nrepl-disconnected-hook (lambda ()
                                      (clojure-quick-repls-clear-con-bufs)))
-
-(run-with-timer 15 5
-                (lambda ()
-                  (when clojure-quick-repls-nrepl-connect-done 
-                    (setq clojure-quick-repls-nrepl-connect-done nil)
-                    (clojure-quick-repls-nrepl-connected-fn clojure-quick-repls-current-buffer))))
 
 ;;;###autoload
 (defun clojure-quick-repls-connect ()
