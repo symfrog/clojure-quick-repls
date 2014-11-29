@@ -139,6 +139,6 @@
 
 (ad-activate 'clojure-quick-repls-nrepl-current-session)
 
-(provide 'clojure-quick-repls-connect)
+(provide 'clojure-quick-repls)
 
 ;;; clojure-quick-repls.el ends here
