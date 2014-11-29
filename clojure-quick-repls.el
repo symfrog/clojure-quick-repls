@@ -66,8 +66,7 @@
                             (lambda ()
                               (clojure-quick-repls-nrepl-connected-fn clojure-quick-repls-current-buffer)))))
 
-(add-hook 'nrepl-disconnected-hook (lambda ()
-                                     (clojure-quick-repls-clear-con-bufs)))
+(add-hook 'nrepl-disconnected-hook #'clojure-quick-repls-clear-con-bufs)
 
 ;;;###autoload
 (defun clojure-quick-repls-connect ()
