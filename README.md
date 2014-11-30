@@ -10,12 +10,26 @@ So no need to manually switch connections!
 Installation
 ------------
 
-Add clojure-quick-repls.el to your init.el via e.g. (load-file "~/.emacs.d/clojure-quick-repls.el"). 
+The recommended way to install is via [MELPA](http://melpa.org) using `package.el`.
+
+You can install `clojure-quick-repls` using the following command:
+
+<kbd>M-x package-install [RET] clojure-quick-repls [RET]</kbd>
+
+or if you'd rather keep it in your dotfiles:
+
+```el
+(unless (package-installed-p 'clojure-quick-repls)
+  (package-refresh-contents))
+```
+
+If the installation doesn't work try refreshing the package list:
+
+<kbd>M-x package-refresh-contents</kbd>
 
 Make sure you have [piggieback](https://github.com/cemerick/piggieback) as a dependency in project.clj.
 
 Also requires [CIDER](https://github.com/clojure-emacs/cider). The latest CIDER snapshot should be used since clojure-quick-repls maintains compatibility with the latest CIDER snapshot as closely as possible.  
-
 
 Usage
 -----
