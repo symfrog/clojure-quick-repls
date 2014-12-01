@@ -36,7 +36,7 @@ Usage
 
 Open any Clojure file in the project that you wish to have Clojure/ClojureScript repls for, then 
 
-M-x clojure-quick-repls-connect
+<kbd>M-x clojure-quick-repls-connect</kbd>
 
 Wait for about 1 minute and check *Messages* buffer for "Clj connection buffer: .\* Cljs connection buffer .\*". 
 
@@ -51,7 +51,7 @@ If you would like to be able to switch to the relevant repl buffer based on if y
  
 You can set a custom variable using: 
 
-M-x customize
+<kbd>M-x customize</kbd>
 
 After setting the custom variable you should have an form under custom-set-variables that looks like: 
 
