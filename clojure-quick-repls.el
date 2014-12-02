@@ -104,7 +104,7 @@
   (let* ((host (nrepl-current-host))
          (port (nrepl-extract-port)))
     (message "Creating repl connection to nrepl server  on port %s, host %s" host port)
-    (cider host port)))
+    (cider-connect host port)))
 
 (defun clojure-quick-repls-bound-truthy-p (s)
   (and (boundp s) (symbol-value s)))
