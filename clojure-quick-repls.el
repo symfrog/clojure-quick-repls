@@ -39,43 +39,42 @@
 
 (require 'cider)
 
-(setq clojure-quick-repls-nrepl-connected-fn nil)
-
-(setq clojure-quick-repls-cljs-setup
-      "(require 'cljs.repl.browser)
+(defcustom clojure-quick-repls-cljs-setup
+  "(require 'cljs.repl.browser)
        (cemerick.piggieback/cljs-repl
-                    :repl-env (cljs.repl.browser/repl-env :port 9000))")
+                    :repl-env (cljs.repl.browser/repl-env :port 9000))"
+  "Default form to initialize ClojureScript REPL"
+  :type '(string)
+  :group 'clojure-quick-repls)
+
+(defvar clojure-quick-repls-nrepl-connected-fn nil)
+
+(defvar clojure-quick-repls-current-buffer nil)
+(defvar clojure-quick-repls-nrepl-connect-done nil)
+
+(defvar clojure-quick-repls-clj-con-buf nil)
+(defvar clojure-quick-repls-cljs-con-buf nil)
 
 (defun clojure-quick-repls-noop-nrepl-connected-fn  ()
   (fset 'clojure-quick-repls-nrepl-connected-fn (lambda (buf) nil)))
 
 (clojure-quick-repls-noop-nrepl-connected-fn)
 
-(setq clojure-quick-repls-current-buffer nil)
-(setq clojure-quick-repls-nrepl-connect-done nil)
-
 (defun clojure-quick-repls-clear-con-bufs ()
   (setq clojure-quick-repls-clj-con-buf nil)
   (setq clojure-quick-repls-cljs-con-buf nil))
 
 (add-hook 'nrepl-connected-hook (lambda ()
-                                  (setq clojure-quick-repls-nrepl-connect-done t)))
+                                  (clojure-quick-repls-nrepl-connected-fn clojure-quick-repls-current-buffer)))
 
-(add-hook 'nrepl-disconnected-hook (lambda ()
-                                     (clojure-quick-repls-clear-con-bufs)))
-
-(run-with-timer 15 5
-                (lambda ()
-                  (when clojure-quick-repls-nrepl-connect-done 
-                    (setq clojure-quick-repls-nrepl-connect-done nil)
-                    (clojure-quick-repls-nrepl-connected-fn clojure-quick-repls-current-buffer))))
+(add-hook 'nrepl-disconnected-hook #'clojure-quick-repls-clear-con-bufs)
 
 ;;;###autoload
 (defun clojure-quick-repls-connect ()
   "Launch Clojure and ClojureScript repls for the current project"
   (interactive)
   (setq clojure-quick-repls-current-buffer (current-buffer))
-  (clojure-quick-repls-noop-nrepl-connected-fn )
+  (clojure-quick-repls-noop-nrepl-connected-fn)
   (cider-jack-in)
 
   (clojure-quick-repls-clear-con-bufs)
@@ -133,12 +132,12 @@
   (interactive)
   (clojure-quick-repls-set-connection 'cider-switch-to-current-repl-buffer 'cider-switch-to-relevant-repl-buffer))
 
-(defadvice clojure-quick-repls-nrepl-current-session (before repl-switch)
+(defadvice clojure-quick-repls-nrepl-current-session (before repl-switch activate)
   (clojure-quick-repls-set-connection nil nil)
   (message "Current repl connection buffer %s" (nrepl-current-connection-buffer)))
-
-(ad-activate 'clojure-quick-repls-nrepl-current-session)
 
 (provide 'clojure-quick-repls)
 
 ;;; clojure-quick-repls.el ends here
+
+
