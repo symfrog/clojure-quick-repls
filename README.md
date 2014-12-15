@@ -38,8 +38,6 @@ Open any Clojure file in the project that you wish to have Clojure/ClojureScript
 
 <kbd>M-x clojure-quick-repls-connect</kbd>
 
-Wait for about 1 minute and check *Messages* buffer for "Clj connection buffer: .\* Cljs connection buffer .\*". 
-
 Do not attempt to execute clojure-quick-repls-connect twice, if you need to restart run cider-quit and then clojure-quick-repls-connect. 
 
 You can now connect the browser and execute any cider command in either a clj/cljs buffer and the forms will be routed to the correct connection.
