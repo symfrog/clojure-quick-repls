@@ -132,11 +132,11 @@
   (interactive)
   (clojure-quick-repls-set-connection 'cider-switch-to-current-repl-buffer 'cider-switch-to-relevant-repl-buffer))
 
+(defun clojure-quick-repls-nrepl-current-session (&optional arg1 arg2)
+  (clojure-quick-repls-set-connection nil nil))
+
 (if (functionp 'advice-add)
     (progn
-      (defun clojure-quick-repls-nrepl-current-session (&optional arg1 arg2)
-	(clojure-quick-repls-set-connection nil nil))
-
       (advice-add 'cider-interactive-eval :before #'clojure-quick-repls-nrepl-current-session)
       (advice-add 'cider-tooling-eval :before #'clojure-quick-repls-nrepl-current-session)
       (advice-add 'cider-complete-at-point :before #'clojure-quick-repls-nrepl-current-session))
