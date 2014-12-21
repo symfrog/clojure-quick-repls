@@ -38,6 +38,7 @@
 ;;; Code:
 
 (require 'cider)
+(require 'dash)
 
 (defcustom clojure-quick-repls-cljs-setup
   "(require 'cljs.repl.browser)
