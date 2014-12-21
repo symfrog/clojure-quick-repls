@@ -5,7 +5,7 @@
 ;; URL: https://github.com/symfrog/clojure-quick-repls
 ;; Keywords: languages, clojure, cider, clojurescript
 ;; Version: 0.2.0-cvs
-;; Package-Requires: ((cider "0.8.1"))
+;; Package-Requires: ((cider "0.8.1") (dash "2.9.0"))
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License
