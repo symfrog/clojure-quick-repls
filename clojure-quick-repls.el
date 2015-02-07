@@ -119,7 +119,7 @@
     (if (and (clojure-quick-repls-bound-truthy-p 'clojure-quick-repls-clj-con-buf)
              (clojure-quick-repls-bound-truthy-p 'clojure-quick-repls-cljs-con-buf)
              ext
-             (or (string= ext "clj") (string= ext "cljs")))
+             (or (string= ext "clj") (string= ext "boot") (string= ext "cljs")))
         (progn
           (if (string= ext "cljs")
               (nrepl-make-connection-default clojure-quick-repls-cljs-con-buf)
