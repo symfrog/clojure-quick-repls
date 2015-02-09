@@ -124,14 +124,16 @@
           (if (string= ext "cljs")
               (nrepl-make-connection-default clojure-quick-repls-cljs-con-buf)
             (nrepl-make-connection-default clojure-quick-repls-clj-con-buf))
-          (when (fboundp f)
+          (when f
             (funcall f)))
-      (when (fboundp h)
-            (funcall h)))))
+      (when h
+        (funcall h)))))
 
 (defun clojure-quick-repls-switch-to-relevant-repl (arg)
   (interactive)
-  (clojure-quick-repls-set-connection 'cider-switch-to-current-repl-buffer 'cider-switch-to-relevant-repl-buffer))
+  (lexical-let ((a arg))
+    (clojure-quick-repls-set-connection (lambda () (cider-switch-to-current-repl-buffer a))
+                                        (lambda () (cider-switch-to-relevant-repl-buffer a)))))
 
 (if (version< emacs-version "24.4")
     (progn
