@@ -143,7 +143,7 @@
         (clojure-quick-repls-set-connection nil nil))
       (defadvice cider-complete-at-point (before clojure-quick-repls-nrepl-current-session activate)
         (clojure-quick-repls-set-connection nil nil)))
-  (defun clojure-quick-repls-nrepl-current-session (&optional arg1 arg2)
+  (defun clojure-quick-repls-nrepl-current-session (&optional arg1 arg2 arg3)
     (clojure-quick-repls-set-connection nil nil))
   (advice-add 'cider-interactive-eval :before #'clojure-quick-repls-nrepl-current-session)
   (advice-add 'cider-tooling-eval :before #'clojure-quick-repls-nrepl-current-session)
