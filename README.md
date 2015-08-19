@@ -45,7 +45,7 @@ You can now connect the browser and execute any cider command in either a clj/cl
 cider-switch-to-relevant-repl-buffer (C-c C-z) 
 ----------------------------------------------
 
-If you would like to be able to switch to the relevant repl buffer based on if you are currently in a clj or cljs buffer then you need to set the custom variable cider-switch-to-repl-command to clojure-quick-repls-switch-to-relevant-repl 
+If you would like to be able to switch to the relevant repl buffer based on if you are currently in a clj or cljs buffer then you need to set the custom variable `cider-switch-to-repl-command` to `clojure-quick-repls-switch-to-relevant-repl` 
  
 You can set a custom variable using: 
 
