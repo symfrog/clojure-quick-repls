@@ -1,3 +1,5 @@
+# This package is deprecated and no longer supported, the functionality provided has been incorporated into [CIDER's ClojureScript support](https://github.com/clojure-emacs/cider/blob/ff2a6dc32d7718a2a3427e3a924a3e6151c9b63b/doc/up_and_running.md#clojurescript-usage) 
+
 clojure-quick-repls
 ===================
 
